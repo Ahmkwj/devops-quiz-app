@@ -373,3 +373,105 @@ function handleNextQuestion() {
     }
 }
 
+// ===========================
+// Results Display
+// ===========================
+function showResults() {
+    const totalQuestions = currentQuestions.length;
+    const percentage = Math.round((score / totalQuestions) * 100);
+    
+    // Update score values
+    elements.finalScore.textContent = score;
+    elements.totalQuestions.textContent = totalQuestions;
+    elements.percentageScore.textContent = `${percentage}%`;
+    
+    // Update stats
+    elements.correctAnswers.textContent = score;
+    elements.incorrectAnswers.textContent = totalQuestions - score;
+    elements.accuracyRate.textContent = `${percentage}%`;
+    
+    // Set performance message
+    elements.performanceMessage.textContent = getPerformanceMessage(percentage);
+    
+    // Show results screen
+    showScreen('results');
+}
+
+function getPerformanceMessage(percentage) {
+    if (percentage === 100) {
+        return 'Perfect! Outstanding DevOps knowledge! 🌟';
+    } else if (percentage >= 80) {
+        return 'Excellent work! You have strong DevOps skills! 🎯';
+    } else if (percentage >= 60) {
+        return 'Good job! Keep learning and improving! 💪';
+    } else if (percentage >= 40) {
+        return 'Not bad! Review the topics and try again! 📚';
+    } else {
+        return 'Keep studying! Practice makes perfect! 📖';
+    }
+}
+
+// ===========================
+// Quiz Control Actions
+// ===========================
+function handleRetry() {
+    showTopicSelection();
+}
+
+function handleChangeTopic() {
+    showTopicSelection();
+}
+
+// ===========================
+// Utility Functions
+// ===========================
+function debugLog(message, data = null) {
+    if (data) {
+        console.log(`[DevOps Quiz] ${message}`, data);
+    } else {
+        console.log(`[DevOps Quiz] ${message}`);
+    }
+}
+
+// ===========================
+// Error Handling
+// ===========================
+window.addEventListener('error', (event) => {
+    console.error('Global error:', event.error);
+    alert('An error occurred. Please refresh the page and try again.');
+});
+
+// ===========================
+// Keyboard Navigation Support
+// ===========================
+document.addEventListener('keydown', (event) => {
+    // Only handle keyboard events in quiz screen
+    if (!screens.quiz.classList.contains('active')) {
+        return;
+    }
+    
+    // Handle number keys 1-4 for option selection
+    if (event.key >= '1' && event.key <= '4') {
+        const index = parseInt(event.key) - 1;
+        const options = document.querySelectorAll('.option');
+        if (options[index] && !options[index].classList.contains('disabled')) {
+            selectOption(index);
+        }
+    }
+    
+    // Handle Enter key for submit/next
+    if (event.key === 'Enter') {
+        if (!elements.submitBtn.classList.contains('hidden')) {
+            handleSubmitAnswer();
+        } else if (!elements.nextBtn.classList.contains('hidden')) {
+            handleNextQuestion();
+        }
+    }
+});
+
+// ===========================
+// Console Welcome Message
+// ===========================
+console.log('%c🚀 DevOps Quiz Application', 'color: #2563eb; font-size: 20px; font-weight: bold;');
+console.log('%cTest your DevOps knowledge!', 'color: #64748b; font-size: 14px;');
+console.log('%cKeyboard shortcuts: Use 1-4 to select options, Enter to submit/continue', 'color: #10b981; font-size: 12px;');
