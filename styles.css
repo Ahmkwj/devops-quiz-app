@@ -92,3 +92,168 @@ header h1 {
     font-weight: 300;
 }
 
+/* ===========================
+   Screen Management
+   =========================== */
+.screen {
+    display: none;
+    padding: var(--spacing-xl) var(--spacing-lg);
+    min-height: 500px;
+    animation: fadeIn var(--transition-normal);
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===========================
+   Welcome Screen
+   =========================== */
+.welcome-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.welcome-content h2 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.welcome-content p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.topic-list {
+    list-style: none;
+    margin-bottom: var(--spacing-xl);
+    text-align: left;
+    display: inline-block;
+}
+
+.topic-list li {
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin-bottom: var(--spacing-xs);
+    background-color: var(--bg-color);
+    border-left: 4px solid var(--primary-color);
+    border-radius: var(--radius-sm);
+    font-size: 1.05rem;
+    color: var(--text-primary);
+}
+
+.topic-list li::before {
+    content: "✓";
+    color: var(--secondary-color);
+    font-weight: bold;
+    margin-right: var(--spacing-sm);
+}
+
+/* ===========================
+   Topic Selection
+   =========================== */
+.topic-selection {
+    text-align: center;
+}
+
+.topic-selection h2 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.topic-selection p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xl);
+    font-size: 1.05rem;
+}
+
+.topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.topic-btn {
+    padding: var(--spacing-lg);
+    background-color: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.topic-btn:hover {
+    border-color: var(--primary-color);
+    background-color: var(--primary-light);
+    color: white;
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.topic-btn.all-topics {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    border: none;
+}
+
+.topic-btn.all-topics:hover {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+}
+
+/* ===========================
+   Progress Bar
+   =========================== */
+.progress-container {
+    margin-bottom: var(--spacing-lg);
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+#topic-display {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.progress-bar {
+    height: 12px;
+    background-color: var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: inset var(--shadow-sm);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    transition: width var(--transition-slow);
+    border-radius: var(--radius-lg);
+}
+
