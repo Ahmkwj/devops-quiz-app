@@ -163,3 +163,125 @@ function createTopicButton(text, extraClass = '') {
     return button;
 }
 
+// ===========================
+// Quiz Start & Management
+// ===========================
+function startQuiz(selectedTopic) {
+    // Filter questions based on selected topic
+    if (selectedTopic === 'all') {
+        currentQuestions = [...allQuestions];
+    } else {
+        currentQuestions = allQuestions.filter(q => q.topic === selectedTopic);
+    }
+    
+    // Shuffle questions for variety
+    currentQuestions = shuffleArray(currentQuestions);
+    
+    // Reset quiz state
+    currentQuestionIndex = 0;
+    score = 0;
+    userAnswers = [];
+    selectedAnswer = null;
+    
+    // Update topic display
+    elements.topicDisplay.textContent = selectedTopic === 'all' ? 'All Topics' : selectedTopic;
+    
+    // Show quiz screen and load first question
+    showScreen('quiz');
+    loadQuestion();
+}
+
+function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+
+// ===========================
+// Question Display
+// ===========================
+function loadQuestion() {
+    const question = currentQuestions[currentQuestionIndex];
+    
+    // Update question counter and progress
+    updateProgress();
+    
+    // Display question text
+    elements.questionText.textContent = question.question;
+    
+    // Display options
+    renderOptions(question.options);
+    
+    // Reset UI state
+    resetQuestionUI();
+    
+    // Update score display
+    updateScoreDisplay();
+}
+
+function updateProgress() {
+    const current = currentQuestionIndex + 1;
+    const total = currentQuestions.length;
+    
+    elements.questionCounter.textContent = `Question ${current} of ${total}`;
+    
+    const progressPercentage = (current / total) * 100;
+    elements.progressFill.style.width = `${progressPercentage}%`;
+}
+
+function renderOptions(options) {
+    elements.optionsContainer.innerHTML = '';
+    
+    options.forEach((option, index) => {
+        const optionElement = createOptionElement(option, index);
+        optionElement.addEventListener('click', () => selectOption(index));
+        elements.optionsContainer.appendChild(optionElement);
+    });
+}
+
+function createOptionElement(text, index) {
+    const optionDiv = document.createElement('div');
+    optionDiv.className = 'option';
+    optionDiv.dataset.index = index;
+    
+    const letterSpan = document.createElement('span');
+    letterSpan.className = 'option-letter';
+    letterSpan.textContent = String.fromCharCode(65 + index); // A, B, C, D
+    
+    const textSpan = document.createElement('span');
+    textSpan.textContent = text;
+    
+    optionDiv.appendChild(letterSpan);
+    optionDiv.appendChild(textSpan);
+    
+    return optionDiv;
+}
+
+function selectOption(index) {
+    // Remove previous selection
+    document.querySelectorAll('.option').forEach(opt => {
+        opt.classList.remove('selected');
+    });
+    
+    // Add selection to clicked option
+    const selectedOption = document.querySelector(`.option[data-index="${index}"]`);
+    if (selectedOption) {
+        selectedOption.classList.add('selected');
+        selectedAnswer = index;
+    }
+}
+
+function resetQuestionUI() {
+    selectedAnswer = null;
+    elements.feedbackContainer.classList.add('hidden');
+    elements.submitBtn.classList.remove('hidden');
+    elements.nextBtn.classList.add('hidden');
+    
+    document.querySelectorAll('.option').forEach(opt => {
+        opt.classList.remove('selected', 'correct', 'incorrect', 'disabled');
+    });
+}
+
