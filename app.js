@@ -93,3 +93,73 @@ async function loadQuestions() {
         throw error;
     }
 }
+
+// ===========================
+// Event Listeners Setup
+// ===========================
+function setupEventListeners() {
+    elements.startBtn.addEventListener('click', () => {
+        showTopicSelection();
+    });
+
+    elements.submitBtn.addEventListener('click', handleSubmitAnswer);
+    elements.nextBtn.addEventListener('click', handleNextQuestion);
+    elements.retryBtn.addEventListener('click', handleRetry);
+    elements.changeTopicBtn.addEventListener('click', handleChangeTopic);
+}
+
+// ===========================
+// Screen Navigation
+// ===========================
+function showScreen(screenName) {
+    Object.values(screens).forEach(screen => {
+        screen.classList.remove('active');
+    });
+    
+    if (screens[screenName]) {
+        screens[screenName].classList.add('active');
+    }
+}
+
+// ===========================
+// Topic Selection
+// ===========================
+function showTopicSelection() {
+    const topics = getUniqueTopics();
+    renderTopicButtons(topics);
+    showScreen('topic');
+}
+
+function getUniqueTopics() {
+    const topicsSet = new Set();
+    allQuestions.forEach(q => {
+        if (q.topic) {
+            topicsSet.add(q.topic);
+        }
+    });
+    return Array.from(topicsSet).sort();
+}
+
+function renderTopicButtons(topics) {
+    elements.topicButtons.innerHTML = '';
+    
+    // Add "All Topics" button
+    const allTopicsBtn = createTopicButton('All Topics', 'all-topics');
+    allTopicsBtn.addEventListener('click', () => startQuiz('all'));
+    elements.topicButtons.appendChild(allTopicsBtn);
+    
+    // Add individual topic buttons
+    topics.forEach(topic => {
+        const topicBtn = createTopicButton(topic);
+        topicBtn.addEventListener('click', () => startQuiz(topic));
+        elements.topicButtons.appendChild(topicBtn);
+    });
+}
+
+function createTopicButton(text, extraClass = '') {
+    const button = document.createElement('button');
+    button.className = `topic-btn ${extraClass}`;
+    button.textContent = text;
+    return button;
+}
+
