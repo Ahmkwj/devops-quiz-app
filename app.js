@@ -52,3 +52,44 @@ const elements = {
     retryBtn: document.getElementById('retry-btn'),
     changeTopicBtn: document.getElementById('change-topic-btn')
 };
+
+// ===========================
+// Initialization
+// ===========================
+document.addEventListener('DOMContentLoaded', () => {
+    initializeApp();
+});
+
+async function initializeApp() {
+    try {
+        await loadQuestions();
+        setupEventListeners();
+        showScreen('welcome');
+    } catch (error) {
+        console.error('Error initializing app:', error);
+        alert('Failed to load quiz questions. Please refresh the page and try again.');
+    }
+}
+
+// ===========================
+// Data Loading
+// ===========================
+async function loadQuestions() {
+    try {
+        const response = await fetch('data/questions.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        allQuestions = data.questions;
+        
+        if (!allQuestions || allQuestions.length === 0) {
+            throw new Error('No questions found in the data file');
+        }
+        
+        console.log(`Successfully loaded ${allQuestions.length} questions`);
+    } catch (error) {
+        console.error('Error loading questions:', error);
+        throw error;
+    }
+}
