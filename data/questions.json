@@ -1,0 +1,69 @@
+{
+  "questions": [
+    {
+      "id": "Q1",
+      "topic": "The DevOps Culture",
+      "question": "What is the primary goal of DevOps culture?",
+      "options": [
+        "To eliminate the operations team",
+        "To break down silos between development and operations teams",
+        "To focus only on automation tools",
+        "To replace developers with operations engineers"
+      ],
+      "answerIndex": 1,
+      "explanation": "DevOps culture emphasizes collaboration and communication between development and operations teams to improve the software delivery process."
+    },
+    {
+      "id": "Q2",
+      "topic": "The DevOps Culture",
+      "question": "Which principle is a core value of DevOps?",
+      "options": [
+        "Working in isolation",
+        "Blaming others for failures",
+        "Continuous improvement and learning from failures",
+        "Avoiding feedback loops"
+      ],
+      "answerIndex": 2,
+      "explanation": "DevOps promotes a culture of continuous improvement, where teams learn from failures and constantly optimize processes."
+    },
+    {
+      "id": "Q3",
+      "topic": "Version Control Systems",
+      "question": "What is the purpose of a Version Control System (VCS)?",
+      "options": [
+        "To compile code automatically",
+        "To track changes to code over time and manage different versions",
+        "To deploy applications to production",
+        "To monitor application performance"
+      ],
+      "answerIndex": 1,
+      "explanation": "Version Control Systems track changes to files over time, allowing teams to collaborate, revert to previous versions, and manage code history."
+    },
+    {
+      "id": "Q4",
+      "topic": "Version Control Systems",
+      "question": "In Git, what does the 'git merge' command do?",
+      "options": [
+        "Deletes a branch",
+        "Creates a new repository",
+        "Combines changes from different branches",
+        "Pushes code to a remote repository"
+      ],
+      "answerIndex": 2,
+      "explanation": "The 'git merge' command integrates changes from one branch into another, typically merging a feature branch into the main branch."
+    },
+    {
+      "id": "Q5",
+      "topic": "Version Control Systems",
+      "question": "What is a 'pull request' in Git workflows?",
+      "options": [
+        "A request to download code from a repository",
+        "A proposal to merge changes from one branch into another for review",
+        "A command to update the local repository",
+        "A way to delete remote branches"
+      ],
+      "answerIndex": 1,
+      "explanation": "A pull request is a mechanism for developers to notify team members that they have completed a feature and request code review before merging."
+    }
+  ]
+}
