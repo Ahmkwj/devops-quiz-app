@@ -285,3 +285,91 @@ function resetQuestionUI() {
     });
 }
 
+// ===========================
+// Answer Checking
+// ===========================
+function handleSubmitAnswer() {
+    if (selectedAnswer === null) {
+        alert('Please select an answer before submitting.');
+        return;
+    }
+    
+    const question = currentQuestions[currentQuestionIndex];
+    const isCorrect = selectedAnswer === question.answerIndex;
+    
+    // Update score
+    if (isCorrect) {
+        score++;
+    }
+    
+    // Store user answer
+    userAnswers.push({
+        questionId: question.id,
+        selectedAnswer: selectedAnswer,
+        correctAnswer: question.answerIndex,
+        isCorrect: isCorrect
+    });
+    
+    // Show feedback
+    displayFeedback(isCorrect, question);
+    
+    // Highlight correct and incorrect answers
+    highlightAnswers(question.answerIndex, selectedAnswer);
+    
+    // Disable all options
+    disableOptions();
+    
+    // Update UI buttons
+    elements.submitBtn.classList.add('hidden');
+    elements.nextBtn.classList.remove('hidden');
+    
+    // Update score display
+    updateScoreDisplay();
+}
+
+function displayFeedback(isCorrect, question) {
+    elements.feedbackContainer.classList.remove('hidden');
+    
+    // Set feedback message
+    elements.feedbackMessage.textContent = isCorrect ? 'Correct!' : 'Incorrect';
+    elements.feedbackMessage.className = isCorrect ? 'feedback-message correct' : 'feedback-message incorrect';
+    
+    // Set explanation
+    elements.explanation.textContent = question.explanation;
+}
+
+function highlightAnswers(correctIndex, selectedIndex) {
+    document.querySelectorAll('.option').forEach((opt, index) => {
+        if (index === correctIndex) {
+            opt.classList.add('correct');
+        } else if (index === selectedIndex && selectedIndex !== correctIndex) {
+            opt.classList.add('incorrect');
+        }
+    });
+}
+
+function disableOptions() {
+    document.querySelectorAll('.option').forEach(opt => {
+        opt.classList.add('disabled');
+        opt.style.cursor = 'not-allowed';
+    });
+}
+
+function updateScoreDisplay() {
+    const answered = currentQuestionIndex + (selectedAnswer !== null ? 1 : 0);
+    elements.currentScore.textContent = `Score: ${score}/${answered}`;
+}
+
+// ===========================
+// Navigation
+// ===========================
+function handleNextQuestion() {
+    currentQuestionIndex++;
+    
+    if (currentQuestionIndex < currentQuestions.length) {
+        loadQuestion();
+    } else {
+        showResults();
+    }
+}
+
