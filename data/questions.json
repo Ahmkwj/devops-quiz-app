@@ -64,6 +64,191 @@
       ],
       "answerIndex": 1,
       "explanation": "A pull request is a mechanism for developers to notify team members that they have completed a feature and request code review before merging."
+    },
+    {
+      "id": "Q6",
+      "topic": "Plan with DevOps",
+      "question": "What is the benefit of using Agile methodologies in DevOps planning?",
+      "options": [
+        "It eliminates the need for testing",
+        "It enables iterative development with frequent releases and feedback",
+        "It removes the need for documentation",
+        "It focuses solely on infrastructure management"
+      ],
+      "answerIndex": 1,
+      "explanation": "Agile methodologies support DevOps by enabling teams to work in short iterations, receive feedback quickly, and adapt to changing requirements."
+    },
+    {
+      "id": "Q7",
+      "topic": "Continuous Integration",
+      "question": "What is the primary goal of Continuous Integration?",
+      "options": [
+        "Automatically deploy to production",
+        "Frequently integrate code changes into a shared repository",
+        "Eliminate the need for testing",
+        "Remove the need for branches"
+      ],
+      "answerIndex": 1,
+      "explanation": "Continuous Integration aims to detect integration issues early by frequently merging code changes and running automated tests."
+    },
+    {
+      "id": "Q8",
+      "topic": "Continuous Integration",
+      "question": "Which tool is commonly used for Continuous Integration?",
+      "options": ["Docker", "Jenkins", "Kubernetes", "Terraform"],
+      "answerIndex": 1,
+      "explanation": "Jenkins is a popular open-source automation server widely used for implementing Continuous Integration pipelines."
+    },
+    {
+      "id": "Q9",
+      "topic": "Continuous Integration",
+      "question": "What should happen when a CI build fails?",
+      "options": [
+        "Ignore it and continue with new commits",
+        "The team should be notified and the issue should be fixed immediately",
+        "Wait until the end of the sprint to fix it",
+        "Disable the CI pipeline"
+      ],
+      "answerIndex": 1,
+      "explanation": "When a CI build fails, it's critical to notify the team immediately and prioritize fixing the issue to maintain code quality and integration."
+    },
+    {
+      "id": "Q10",
+      "topic": "Continuous Integration",
+      "question": "What is a key practice in Continuous Integration?",
+      "options": [
+        "Committing code once per month",
+        "Running automated tests with every code integration",
+        "Manually testing all changes",
+        "Deploying directly to production without testing"
+      ],
+      "answerIndex": 1,
+      "explanation": "Running automated tests with every integration is essential in CI to catch bugs early and ensure code quality."
+    },
+    {
+      "id": "Q11",
+      "topic": "Continuous Delivery",
+      "question": "What is Continuous Delivery?",
+      "options": [
+        "Automatically deploying every change to production",
+        "Ensuring code is always in a deployable state and can be released at any time",
+        "Delivering hardware to data centers continuously",
+        "Writing code without any testing"
+      ],
+      "answerIndex": 1,
+      "explanation": "Continuous Delivery ensures that code is always in a releasable state through automated testing and build processes, though deployment is still a manual decision."
+    },
+    {
+      "id": "Q12",
+      "topic": "Continuous Delivery",
+      "question": "What differentiates Continuous Delivery from Continuous Deployment?",
+      "options": [
+        "Continuous Delivery deploys automatically, Continuous Deployment requires manual approval",
+        "Continuous Delivery requires manual approval to deploy, Continuous Deployment is fully automated",
+        "They are the same thing",
+        "Continuous Delivery doesn't use automation"
+      ],
+      "answerIndex": 1,
+      "explanation": "Continuous Delivery keeps code deployment-ready but requires manual approval, while Continuous Deployment automatically deploys all changes that pass tests."
+    },
+    {
+      "id": "Q13",
+      "topic": "Continuous Delivery",
+      "question": "Which practice is essential for Continuous Delivery?",
+      "options": [
+        "Manual testing only",
+        "Automated testing and deployment pipelines",
+        "Infrequent code commits",
+        "Avoiding version control"
+      ],
+      "answerIndex": 1,
+      "explanation": "Automated testing and deployment pipelines are crucial for Continuous Delivery to ensure code can be released reliably at any time."
+    },
+    {
+      "id": "Q14",
+      "topic": "Continuous Deployment",
+      "question": "In Continuous Deployment, when does code get deployed to production?",
+      "options": [
+        "Once a week during maintenance windows",
+        "Automatically after passing all automated tests",
+        "Only when manually triggered by a manager",
+        "At the end of each sprint"
+      ],
+      "answerIndex": 1,
+      "explanation": "Continuous Deployment automatically releases code to production as soon as it passes all stages of the automated testing pipeline."
+    },
+    {
+      "id": "Q15",
+      "topic": "Continuous Deployment",
+      "question": "What is a prerequisite for implementing Continuous Deployment?",
+      "options": [
+        "Manual testing procedures",
+        "Comprehensive automated test coverage",
+        "Monthly release cycles",
+        "Separate development and production environments only"
+      ],
+      "answerIndex": 1,
+      "explanation": "Continuous Deployment requires comprehensive automated tests to ensure that code deployed automatically is of high quality and won't break production."
+    },
+    {
+      "id": "Q16",
+      "topic": "Infrastructure as Code",
+      "question": "What is Infrastructure as Code (IaC)?",
+      "options": [
+        "Writing application code for infrastructure teams",
+        "Managing and provisioning infrastructure through machine-readable configuration files",
+        "Manually configuring servers through GUI",
+        "Coding only in infrastructure-specific languages"
+      ],
+      "answerIndex": 1,
+      "explanation": "Infrastructure as Code is the practice of managing infrastructure using configuration files, enabling version control, automation, and consistency."
+    },
+    {
+      "id": "Q17",
+      "topic": "Infrastructure as Code",
+      "question": "Which tool is commonly used for Infrastructure as Code?",
+      "options": ["Microsoft Word", "Terraform", "Photoshop", "Excel"],
+      "answerIndex": 1,
+      "explanation": "Terraform is a popular IaC tool that allows you to define and provision infrastructure using declarative configuration files."
+    },
+    {
+      "id": "Q18",
+      "topic": "Infrastructure as Code",
+      "question": "What is a key benefit of using Infrastructure as Code?",
+      "options": [
+        "It requires more manual intervention",
+        "Infrastructure can be version-controlled and reproduced consistently",
+        "It only works on physical servers",
+        "It eliminates the need for monitoring"
+      ],
+      "answerIndex": 1,
+      "explanation": "IaC allows infrastructure to be version-controlled, making it easy to track changes, reproduce environments, and ensure consistency across deployments."
+    },
+    {
+      "id": "Q19",
+      "topic": "Infrastructure as Code",
+      "question": "What does 'idempotent' mean in the context of Infrastructure as Code?",
+      "options": [
+        "Running the same configuration multiple times produces the same result",
+        "Each run creates a new infrastructure instance",
+        "Configuration files cannot be reused",
+        "Infrastructure changes randomly with each execution"
+      ],
+      "answerIndex": 0,
+      "explanation": "Idempotent operations in IaC mean that applying the same configuration multiple times will result in the same infrastructure state, preventing unintended changes."
+    },
+    {
+      "id": "Q20",
+      "topic": "The DevOps Culture",
+      "question": "What does 'shift left' mean in DevOps?",
+      "options": [
+        "Moving team members to different departments",
+        "Incorporating testing and security earlier in the development process",
+        "Delaying testing until after deployment",
+        "Shifting work to offshore teams"
+      ],
+      "answerIndex": 1,
+      "explanation": "'Shift left' refers to moving testing, security, and quality assurance earlier in the software development lifecycle to catch issues sooner and reduce costs."
     }
   ]
 }
